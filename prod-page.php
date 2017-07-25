@@ -80,18 +80,42 @@ get_header(); ?>
               echo "<div class='s1-box-background'>";
               $counter = 0;
               foreach($s1_category2 as $s1_category2) {
+                $img = $wpdb->get_results("SELECT img0 FROM wp_prod0 WHERE s1 = '$s1_category2->s1' AND img0 IS NOT NULL;");
+                // print_r(sizeof($img));
                 if($counter < 4) {
                   echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box'>";
                   echo "<div class='item-img'>";
-                  echo "<img src='https://s3.amazonaws.com/files.coda.com/content/prod/categories/193-brandedcableties.jpg' height='100' widht='100'>";
+                  if (sizeof($img) > 1) {
+                    foreach($img as $img) {
+                      echo "<img src='' height='100' width='100'>";
+                    }
+                  } elseif (sizeof($img)===1) {
+                    // print_r($img->img0);
+                    echo "<img src='".$img[0]->img0."' height='100' width='100'>";
+                  } else {
+                    echo "<img src='http://files.coda.com.s3.amazonaws.com/imgv2/c_logo.jpg' height='100' width='100'>";
+                  };
+                  // echo "<img src='https://s3.amazonaws.com/files.coda.com/content/prod/categories/193-brandedcableties.jpg' height='100' widht='100'>";
                   echo "</div>";
                   echo "<div class='s1-cat'>".$s1_category2->s1."</div>";
                   echo "</a>";
                   $counter++;
                 } else {
+                  // if sub category is more than 4, this add class to hide.
                   echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box extra-box pos".$mPos."'>";
                   echo "<div class='item-img'>";
-                  echo "<img src='https://s3.amazonaws.com/files.coda.com/content/prod/categories/193-brandedcableties.jpg' height='100' widht='100'>";
+                  if (sizeof($img) > 1) {
+                    // foreach($img as $img) {
+                    //   echo "<img src='' height='100' width='100'>";
+                    // }
+                    echo "<img src='".$img[array_rand($img)]->img0."' height='100' width='100'>";
+                  } elseif (sizeof($img)===1) {
+                    // print_r($img->img0);
+                    echo "<img src='".$img[0]->img0."' height='100' width='100'>";
+                  } else {
+                    echo "<img src='http://files.coda.com.s3.amazonaws.com/imgv2/c_logo.jpg' height='100' width='100'>";
+                  };
+                  // echo "<img src='https://s3.amazonaws.com/files.coda.com/content/prod/categories/193-brandedcableties.jpg' height='100' widht='100'>";
                   echo "</div>";
                   echo "<div class='s1-cat'>".$s1_category2->s1."</div>";
                   echo "</a>";
