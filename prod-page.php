@@ -86,9 +86,11 @@ get_header(); ?>
                   echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box'>";
                   echo "<div class='item-img'>";
                   if (sizeof($img) > 1) {
-                    foreach($img as $img) {
-                      echo "<img src='' height='100' width='100'>";
-                    }
+                    // foreach($img as $img) {
+                    //   echo "<img src='' height='100' width='100'>";
+                    // }
+                    echo "<img src='".$img[array_rand($img)]->img0."' height='100' width='100'>";
+                    
                   } elseif (sizeof($img)===1) {
                     // print_r($img->img0);
                     echo "<img src='".$img[0]->img0."' height='100' width='100'>";
@@ -105,14 +107,13 @@ get_header(); ?>
                   echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box extra-box pos".$mPos."'>";
                   echo "<div class='item-img'>";
                   if (sizeof($img) > 1) {
-                    // foreach($img as $img) {
-                    //   echo "<img src='' height='100' width='100'>";
-                    // }
                     echo "<img src='".$img[array_rand($img)]->img0."' height='100' width='100'>";
-                  } elseif (sizeof($img)===1) {
+                  }
+                  elseif (sizeof($img)===1) {
                     // print_r($img->img0);
                     echo "<img src='".$img[0]->img0."' height='100' width='100'>";
-                  } else {
+                  }
+                  else {
                     echo "<img src='http://files.coda.com.s3.amazonaws.com/imgv2/c_logo.jpg' height='100' width='100'>";
                   };
                   // echo "<img src='https://s3.amazonaws.com/files.coda.com/content/prod/categories/193-brandedcableties.jpg' height='100' widht='100'>";
