@@ -106,3 +106,38 @@ a.display-extra {
   /*margin-bottom: 20px;*/
   cursor: pointer;
 }
+
+
+/* - - - product cell display - - - */
+.s2-title {
+  /*padding-left: 20px;*/
+  text-align: center;
+}
+td.p2-title {
+  width: 25%;
+  vertical-align: top;
+}
+td.p2-data {
+  width: 75%;
+  vertical-align: top;
+  padding: 10px;
+}
+
+table.item-data-sheet {
+  /*width: 100%;*/
+  font-size: 12px;
+  text-align: center;
+  /*padding: 5px;*/
+  margin: auto;
+}
+.item-data-sheet th {
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+}
+.item-data-sheet tr {
+  border-bottom: 1px solid #A7A9AC;
+}
+.item-data-sheet tr:nth-child(odd) {
+  background-color: #fff;
+}
