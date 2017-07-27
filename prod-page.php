@@ -75,7 +75,8 @@ get_header(); ?>
           foreach($main_category2 as $main_category2) {
             echo "<div class='group-container'>";
             echo "<div class='m-title'>".$main_category2->m0."</div>";
-            $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
+            $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1,s2 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
+            print_r($s1_category2);
             if(!empty($s1_category2[0]->s1)) {
               echo "<div class='s1-box-background'>";
               $counter = 0;
@@ -83,14 +84,18 @@ get_header(); ?>
                 $img = $wpdb->get_results("SELECT img0 FROM wp_prod0 WHERE s1 = '$s1_category2->s1' AND img0 IS NOT NULL;");
                 // print_r(sizeof($img));
                 if($counter < 4) {
-                  echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box'>";
+                  // if(($s1_category2->s2)!=""){  //if s2 is not empty, go to ps1 page. else, go to ps2.
+                    echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box'>";
+                  // } else {
+                  //   echo "<a href='products/ps2/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box'>";
+                  // }
                   echo "<div class='item-img'>";
                   if (sizeof($img) > 1) {
                     // foreach($img as $img) {
                     //   echo "<img src='' height='100' width='100'>";
                     // }
                     echo "<img src='".$img[array_rand($img)]->img0."' height='100' width='100'>";
-                    
+
                   } elseif (sizeof($img)===1) {
                     // print_r($img->img0);
                     echo "<img src='".$img[0]->img0."' height='100' width='100'>";
@@ -104,7 +109,11 @@ get_header(); ?>
                   $counter++;
                 } else {
                   // if sub category is more than 4, this add class to hide.
-                  echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box extra-box pos".$mPos."'>";
+                  // if(($s1_category2->s2)!=""){  //if s2 is not empty, go to ps1 page. else, go to ps2.
+                    echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box extra-box pos".$mPos."'>";
+                  // } else {
+                    // echo "<a href='products/ps2/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box extra-box pos".$mPos."'>";
+                  // }
                   echo "<div class='item-img'>";
                   if (sizeof($img) > 1) {
                     echo "<img src='".$img[array_rand($img)]->img0."' height='100' width='100'>";
