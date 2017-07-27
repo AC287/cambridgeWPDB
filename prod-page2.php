@@ -22,8 +22,9 @@ get_header(); ?>
 			$p2m0 = $wp_query->query_vars['m0'];	//assign query value
 			$p2s1 = $wp_query->query_vars['s1'];	// assign query value
 			$p2s2 = $wp_query->query_vars['s2'];
-			// print_r($p1m0);
-			// print_r($p1s1);
+			// print_r($p2m0);
+			// print_r($p2s1);
+			// print_r($p2s2);
 
 			$main_category = $wpdb->get_results("SELECT DISTINCT m0 From wp_prod0;");
 			// $main_category2 = $main_category;
@@ -72,16 +73,26 @@ get_header(); ?>
 			// echo "<h1> HELLO </h1>";
 			// $mPos = 0;
 			echo "<div class='group-container'>";
-				echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  <a href='products/ps1/?m0=".$p2m0."&s1=".$p2s1."'>".$p2s1."</a>  >>  ".$p2s2."</div>";	//Title
+				if($p2s2!=""){
+					echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  <a href='products/ps1/?m0=".$p2m0."&s1=".$p2s1."'>".$p2s1."</a>  >>  ".$p2s2."</div>";	//Title
+					$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
+					$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
+				} else {
+					echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  ".$p2s1."</div>";	//Title
+					$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1';");
+					$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1';");
+				}
 				// $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
-				$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
-				$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
 				// print_r($item_data_legend);
 				// print_r(count($item_data_legend[0]));
 				echo "<div class='s1-box-background'>";
 					echo "<table>";
 						echo "<td class='p2-title'>";
-							echo "<div class='s2-title'><h2>".$p2s2."</h2></div>";
+							if($p2s2!=""){
+								echo "<div class='s2-title'><h2>".$p2s2."</h2></div>";
+							} else {
+								echo "<div class='s2-title'><h2>".$p2s1."</h2></div>";
+							}
 						echo "</td>";	// end s2-title.
 						echo "<td class='p2-data'>";
 						// print_r($item_data);
