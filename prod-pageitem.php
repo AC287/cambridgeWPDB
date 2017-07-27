@@ -1,10 +1,10 @@
 <?php
 /*
-	Template Name: Products sub 2
+	Template Name: Products Item page.
  */
 
-// ps2
-// Data displaying Page for sub category.
+// Item page
+// Data displaying individual item.
 get_header(); ?>
 
 <div class="wrap">
@@ -19,9 +19,7 @@ get_header(); ?>
 			// echo '<br />';
 			// echo 'Sub Category : ' . $wp_query->query_vars['s1'];
 
-			$p2m0 = $wp_query->query_vars['m0'];	//assign query value
-			$p2s1 = $wp_query->query_vars['s1'];	// assign query value
-			$p2s2 = $wp_query->query_vars['s2'];
+			$item_id = $wp_query->query_vars['id'];	//assign query value
 			// print_r($p2m0);
 			// print_r($p2s1);
 			// print_r($p2s2);
@@ -73,15 +71,28 @@ get_header(); ?>
 			// echo "<h1> HELLO </h1>";
 			// $mPos = 0;
 			echo "<div class='group-container'>";
-				if($p2s2!=""){
-					echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  <a href='products/ps1/?m0=".$p2m0."&s1=".$p2s1."'>".$p2s1."</a>  >>  ".$p2s2."</div>";	//Title
-					$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
-					$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
+				$get_item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE item='$item_id';");
+				$item_main_cat = $get_item_data[0]->m0;
+				$item_sub1_cat = $get_item_data[0]->s1;
+				$item_sub2_cat = $get_item_data[0]->s2;
+				if($item_sub2_cat != ""){
+					$get_item_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0='$item_main_cat' AND s1='$item_sub1_cat' AND s2='$item_sub2_cat';");
+					// print_r("sub2 is not empty");
 				} else {
-					echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  ".$p2s1."</div>";	//Title
-					$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1';");
-					$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1';");
+					$get_item_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0='$item_main_cat' AND s1='$item_sub1_cat';");
+					// print_r("sub2 is empty");
 				}
+				print_r($get_item_data);
+				print_r($get_item_legend);
+				// if($p2s2!=""){
+				// 	echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  <a href='products/ps1/?m0=".$p2m0."&s1=".$p2s1."'>".$p2s1."</a>  >>  ".$p2s2."</div>";	//Title
+				// 	$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
+				// 	$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
+				// } else {
+				// 	echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  ".$p2s1."</div>";	//Title
+				// 	$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1';");
+				// 	$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1';");
+				// }
 				// $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
 				// print_r($item_data_legend);
 				// print_r(count($item_data_legend[0]));
@@ -97,37 +108,37 @@ get_header(); ?>
 						echo "<td class='p2-data'>";
 						// print_r($item_data);
 						echo "<div class='p2-description-txt'>";
-							echo "<p>".$item_data[0]->d0."</p>";
+							// echo "<p>".$item_data[0]->d0."</p>";
 						echo "</div>";	// end p2-description-txt.
 						echo "</td>";	// end p2-description-txt.
 					echo "</table>";	// end table.
 					echo "<hr/>";
-					echo "<table class='item-data-sheet'>";
-					echo "<tr>";
-					echo "<th>".$item_data_legend[0]->item."</th>";
-					for ($x=1; $x < 9; $x++) {
-						$cell_data = "d".$x;
-						// print_r($item_data_legend[0]->$cell_data);
-						// if(($item_data_legend[0]->d.$x)) {
-						// 	print_r($x);
-						// }
-						if(($item_data_legend[0]->$cell_data)!=""){
-							echo "<th>".$item_data_legend[0]->$cell_data."</th>";
-						}
-					}
-					echo "</tr>";
-					foreach($item_data as $item_data) {
-						echo "<tr>";
-						echo "<td><a href='products/item/?id=".$item_data->item."'>".$item_data->item."</a></td>";
-						for ($y=1; $y<9; $y++) {
-							$cell_data2 = "d".$y;
-							if(($item_data->$cell_data2)!="") {
-								echo "<td>".$item_data->$cell_data2."</td>";
-							}
-						}
-						echo "</tr>";
-					}
-					echo "</table>";
+					// echo "<table class='item-data-sheet'>";
+					// echo "<tr>";
+					// echo "<th>".$item_data_legend[0]->item."</th>";
+					// for ($x=1; $x < 9; $x++) {
+					// 	$cell_data = "d".$x;
+					// 	// print_r($item_data_legend[0]->$cell_data);
+					// 	// if(($item_data_legend[0]->d.$x)) {
+					// 	// 	print_r($x);
+					// 	// }
+					// 	if(($item_data_legend[0]->$cell_data)!=""){
+					// 		echo "<th>".$item_data_legend[0]->$cell_data."</th>";
+					// 	}
+					// }
+					// echo "</tr>";
+					// foreach($item_data as $item_data) {
+					// 	echo "<tr>";
+					// 	echo "<td><a href='products/item/?id=".$item_data->item."'>".$item_data->item."</a></td>";
+					// 	for ($y=1; $y<9; $y++) {
+					// 		$cell_data2 = "d".$y;
+					// 		if(($item_data->$cell_data2)!="") {
+					// 			echo "<td>".$item_data->$cell_data2."</td>";
+					// 		}
+					// 	}
+					// 	echo "</tr>";
+					// }
+					// echo "</table>";
 			echo "</div>";
 				// $mPos++;
 			echo "</div>";  //end group-container div;
