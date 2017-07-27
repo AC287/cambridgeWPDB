@@ -76,21 +76,31 @@ get_header(); ?>
             echo "<div class='group-container'>";
             echo "<div class='m-title'>".$main_category2->m0."</div>";
             $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
+            // print_r($s1_category2);
             if(!empty($s1_category2[0]->s1)) {
               echo "<div class='s1-box-background'>";
               $counter = 0;
               foreach($s1_category2 as $s1_category2) {
                 $img = $wpdb->get_results("SELECT img0 FROM wp_prod0 WHERE s1 = '$s1_category2->s1' AND img0 IS NOT NULL;");
                 // print_r(sizeof($img));
+                $s2_check = $wpdb->get_results("SELECT DISTINCT s2 FROM wp_prod0 WHERE m0='$main_category2->m0' AND s1='$s1_category2->s1';");
+                // print_r(sizeof($s2_check));
+                // print_r($s2_check[0]->s2);
+                // print_r($main_category2->m0);
+                // print_r($s1_category2->s1);
                 if($counter < 4) {
-                  echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box'>";
+                  if((sizeof($s2_check)>=1) && (($s2_check[0]->s2)!="")){  //if s2 is not empty, go to ps1 page. else, go to ps2.
+                    echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box'>";
+                  } else {
+                    echo "<a href='products/ps2/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box'>";
+                  }
                   echo "<div class='item-img'>";
                   if (sizeof($img) > 1) {
                     // foreach($img as $img) {
                     //   echo "<img src='' height='100' width='100'>";
                     // }
                     echo "<img src='".$img[array_rand($img)]->img0."' height='100' width='100'>";
-                    
+
                   } elseif (sizeof($img)===1) {
                     // print_r($img->img0);
                     echo "<img src='".$img[0]->img0."' height='100' width='100'>";
@@ -104,7 +114,11 @@ get_header(); ?>
                   $counter++;
                 } else {
                   // if sub category is more than 4, this add class to hide.
-                  echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box extra-box pos".$mPos."'>";
+                  if((sizeof($s2_check)>=1)&&(($s2_check[0]->s2)!="")){  //if s2 is not empty, go to ps1 page. else, go to ps2.
+                    echo "<a href='products/ps1/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box extra-box pos".$mPos."'>";
+                  } else {
+                    echo "<a href='products/ps2/?m0=".$main_category2->m0."&s1=".$s1_category2->s1."' class='s1-box extra-box pos".$mPos."'>";
+                  }
                   echo "<div class='item-img'>";
                   if (sizeof($img) > 1) {
                     echo "<img src='".$img[array_rand($img)]->img0."' height='100' width='100'>";
