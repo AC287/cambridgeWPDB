@@ -107,6 +107,15 @@ a.display-extra {
   cursor: pointer;
 }
 
+.m-title a {
+  text-decoration: none;
+  color: inherit;
+}
+/*.m-title a:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}*/
 
 /* - - - product cell display - - - */
 .s2-title {
