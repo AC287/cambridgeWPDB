@@ -113,13 +113,20 @@ get_header(); ?>
 					echo "</tr>";
 					foreach($item_data as $item_data) {
 						echo "<tr>";
-						echo "<td>".$item_data->item."</td>";	//item#
-						echo "<td>".$item_data->d1."</td>";		//length aka d1.
-						echo "<td>".$item_data->d2."</td>";		//tensile str aka d2.
-						echo "<td>".$item_data->d3."</td>";		//bundle dia aka d3.
-						echo "<td>".$item_data->d4."</td>";		//color aka d4.
-						echo "<td>".$item_data->d5."</td>";		//QTY aka d5.
-						echo "<td>".$item_data->d6."</td>";		//Case QTY aka d6.
+						echo "<td>".$item_data->item."</td>";
+						for ($y=1; $y<9; $y++) {
+							$cell_data2 = "d".$y;
+							if(($item_data->$cell_data2)!="") {
+								echo "<td>".$item_data->$cell_data2."</td>";
+							}
+						}
+						// echo "<td>".$item_data->item."</td>";	//item#
+						// echo "<td>".$item_data->d1."</td>";		//length aka d1.
+						// echo "<td>".$item_data->d2."</td>";		//tensile str aka d2.
+						// echo "<td>".$item_data->d3."</td>";		//bundle dia aka d3.
+						// echo "<td>".$item_data->d4."</td>";		//color aka d4.
+						// echo "<td>".$item_data->d5."</td>";		//QTY aka d5.
+						// echo "<td>".$item_data->d6."</td>";		//Case QTY aka d6.
 						echo "</tr>";
 					}
 					echo "</table>";
