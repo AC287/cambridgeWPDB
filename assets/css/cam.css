@@ -133,13 +133,14 @@ td.p2-data {
 }
 
 table.item-data-sheet {
-  /*width: 100%;*/
+  width: 100%;
   font-size: 12px;
   text-align: center;
   /*padding: 5px;*/
   margin: auto;
 }
 .item-data-sheet th {
+  /*width: 100%;*/
   text-align: center;
   background-color: #000;
   color: #fff;

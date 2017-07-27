@@ -74,7 +74,10 @@ get_header(); ?>
 			echo "<div class='group-container'>";
 				echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  <a href='products/ps1/?m0=".$p2m0."&s1=".$p2s1."'>".$p2s1."</a>  >>  ".$p2s2."</div>";	//Title
 				// $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
+				$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
 				$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
+				// print_r($item_data_legend);
+				// print_r(count($item_data_legend[0]));
 				echo "<div class='s1-box-background'>";
 					echo "<table>";
 						echo "<td class='p2-title'>";
@@ -90,13 +93,23 @@ get_header(); ?>
 					echo "<hr/>";
 					echo "<table class='item-data-sheet'>";
 					echo "<tr>";
-					echo "<th>ITEM#</th>";
-					echo "<th>LENGTH</th>";
-					echo "<th>TENSILE STRENGTH</th>";
-					echo "<th>BUNDLE DIAMETER</th>";
-					echo "<th>COLOR</th>";
-					echo "<th>QTY</th>";
-					echo "<th>CASE QTY</th>";
+					echo "<th>".$item_data_legend[0]->item."</th>";
+					for ($x=1; $x < 9; $x++) {
+						$cell_data = "d".$x;
+						// print_r($item_data_legend[0]->$cell_data);
+						// if(($item_data_legend[0]->d.$x)) {
+						// 	print_r($x);
+						// }
+						if(($item_data_legend[0]->$cell_data)!=""){
+							echo "<th>".$item_data_legend[0]->$cell_data."</th>";
+						}
+					}
+					// echo "<th>LENGTH</th>";
+					// echo "<th>TENSILE STRENGTH</th>";
+					// echo "<th>BUNDLE DIAMETER</th>";
+					// echo "<th>COLOR</th>";
+					// echo "<th>QTY</th>";
+					// echo "<th>CASE QTY</th>";
 					echo "</tr>";
 					foreach($item_data as $item_data) {
 						echo "<tr>";
