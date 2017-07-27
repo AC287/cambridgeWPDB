@@ -115,55 +115,19 @@ get_header(); ?>
 							echo "<th>".$item_data_legend[0]->$cell_data."</th>";
 						}
 					}
-					// echo "<th>LENGTH</th>";
-					// echo "<th>TENSILE STRENGTH</th>";
-					// echo "<th>BUNDLE DIAMETER</th>";
-					// echo "<th>COLOR</th>";
-					// echo "<th>QTY</th>";
-					// echo "<th>CASE QTY</th>";
 					echo "</tr>";
 					foreach($item_data as $item_data) {
 						echo "<tr>";
-						echo "<td>".$item_data->item."</td>";
+						echo "<td><a href='products/ps3/?item=".$item_data->item."'>".$item_data->item."</a></td>";
 						for ($y=1; $y<9; $y++) {
 							$cell_data2 = "d".$y;
 							if(($item_data->$cell_data2)!="") {
 								echo "<td>".$item_data->$cell_data2."</td>";
 							}
 						}
-						// echo "<td>".$item_data->item."</td>";	//item#
-						// echo "<td>".$item_data->d1."</td>";		//length aka d1.
-						// echo "<td>".$item_data->d2."</td>";		//tensile str aka d2.
-						// echo "<td>".$item_data->d3."</td>";		//bundle dia aka d3.
-						// echo "<td>".$item_data->d4."</td>";		//color aka d4.
-						// echo "<td>".$item_data->d5."</td>";		//QTY aka d5.
-						// echo "<td>".$item_data->d6."</td>";		//Case QTY aka d6.
 						echo "</tr>";
 					}
 					echo "</table>";
-			// 	foreach($sub_category2 as $sub_category2) {
-			// 	// $counter = 0;
-			// 	$img = $wpdb->get_results("SELECT img0 FROM wp_prod0 WHERE s2 = '$sub_category2->s2' AND img0 IS NOT NULL;");
-			// 	// print_r(sizeof($img));
-			// 	echo "<a href='products/ps2/?m0=".$p1m0."&s1=".$p1s1."&s2=".$sub_category2->s2."' class='s1-box'>";
-			// 	echo "<div class='item-img'>";
-			// 	if (sizeof($img) > 1) {
-			// 		// foreach($img as $img) {
-			// 		// 	echo "<img src='' height='100' width='100'>";
-			// 		// }
-			// 		echo "<img src='".$img[array_rand($img)]->img0."' height='100' width='100'>";
-			// 	} elseif (sizeof($img)===1) {
-			// 		// print_r($img->img0);
-			// 		echo "<img src='".$img[0]->img0."' height='100' width='100'>";
-			// 	} else {
-			// 		echo "<img src='http://files.coda.com.s3.amazonaws.com/imgv2/c_logo.jpg' height='100' width='100'>";
-			// 	};
-			// 	// echo "<img src='https://s3.amazonaws.com/files.coda.com/content/prod/categories/193-brandedcableties.jpg' height='100' widht='100'>";
-			// 	echo "</div>";
-			// 	echo "<div class='s1-cat'>".$sub_category2->s2."</div>";
-			// 	echo "</a>";
-			//
-			// }
 			echo "</div>";
 				// $mPos++;
 			echo "</div>";  //end group-container div;
