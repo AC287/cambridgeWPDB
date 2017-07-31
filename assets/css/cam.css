@@ -151,3 +151,34 @@ table.item-data-sheet {
 .item-data-sheet tr:nth-child(odd) {
   background-color: #fff;
 }
+
+/* - - - item page - - - */
+#each-item-spec {
+  /*padding: 5px;*/
+  /*width: 650px;*/
+  width: inherit;
+  margin: 10px;
+  background-color: #fff;
+}
+.item-image {
+  /*padding: 10px;*/
+  /*margin-left: 10px;*/
+  width: 370px;
+  text-align: center;
+}
+.item-data {
+  padding-left: 10px;
+  text-align: center;
+  /*padding-right: 10px;*/
+  /*width: 50%;*/
+}
+.main-view-lg {
+  /*padding-left: 10px;*/
+  width: 350px;
+  /*display: none;*/
+}
+.single-thumb {
+  width: 100px;
+  margin-left: 10px;
+  cursor: pointer;
+}

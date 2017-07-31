@@ -84,64 +84,55 @@ get_header(); ?>
 					echo "<div class='m-title'><a href='products/'>".$item_main_cat."</a>  >>  <a href='products/ps2/?m0=".$item_main_cat."&s1=".$item_sub1_cat."'>".$item_sub1_cat."</a>  >>  ".$item_id."</div>";	//Title
 					// print_r("sub2 is empty");
 				}
-				// print_r($get_item_data);
-				// print_r($get_item_legend);
-				// if($p2s2!=""){
-				// 	echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  <a href='products/ps1/?m0=".$p2m0."&s1=".$p2s1."'>".$p2s1."</a>  >>  ".$p2s2."</div>";	//Title
-				// 	$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
-				// 	$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
-				// } else {
-				// 	echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  ".$p2s1."</div>";	//Title
-				// 	$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1';");
-				// 	$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1';");
-				// }
-				// $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
-				// print_r($item_data_legend);
-				// print_r(count($item_data_legend[0]));
 				echo "<div class='s1-box-background'>";
-					echo "<table>";
-						echo "<td class='p2-title'>";
-							if($p2s2!=""){
-								echo "<div class='s2-title'><h2>".$p2s2."</h2></div>";
-							} else {
-								echo "<div class='s2-title'><h2>".$p2s1."</h2></div>";
-							}
-						echo "</td>";	// end s2-title.
-						echo "<td class='p2-data'>";
+					echo "<table id='each-item-spec'>";
+						echo "<td class='item-image'>";
+							echo "<div class='img-content-box'>";
+								for ($x=0; $x<=4; $x++) {
+									$img = "img".$x;
+									switch ($x) {
+										case 0:
+										{
+											if(($get_item_data[0]->$img) !=""){
+												echo "<img class='main-view-lg main-$img' src='".$get_item_data[0]->$img."'>";
+											}
+										}
+										break;
+										default:
+										{
+											if(($get_item_data[0]->$img) !=""){
+												echo "<img class='main-view-lg main-$img' src='".$get_item_data[0]->$img."' style='display:none'>";
+											}
+										}
+									// endswitch;
+									}
+								}
+								echo "<br/>";
+								echo "<div class='img-thumbnail-section'>";
+									for ($y=0; $y<=4; $y++) {
+										$img = "img".$y;
+										if(($get_item_data[0]->$img) !=""){
+											echo "<img class='single-thumb thumb-$img' src='".$get_item_data[0]->$img."'>";
+										}
+									}
+								echo "</div>";	// end img-thumbnail-section;
+							echo "</div>";	// end main-view-lg
+						// echo "<p>IMAGE HERE</p>";
+							// if($p2s2!=""){
+							// 	echo "<div class='s2-title'><h2>".$p2s2."</h2></div>";
+							// } else {
+							// 	echo "<div class='s2-title'><h2>".$p2s1."</h2></div>";
+							// }
+						echo "</td>";	// end item-image.
+						echo "<td class='item-data'>";
+						echo "<p>DATA HERE</p>";
 						// print_r($item_data);
-						echo "<div class='p2-description-txt'>";
+						// echo "<div class='p2-description-txt'>";
 							// echo "<p>".$item_data[0]->d0."</p>";
-						echo "</div>";	// end p2-description-txt.
-						echo "</td>";	// end p2-description-txt.
-					echo "</table>";	// end table.
-					echo "<hr/>";
-					// echo "<table class='item-data-sheet'>";
-					// echo "<tr>";
-					// echo "<th>".$item_data_legend[0]->item."</th>";
-					// for ($x=1; $x < 9; $x++) {
-					// 	$cell_data = "d".$x;
-					// 	// print_r($item_data_legend[0]->$cell_data);
-					// 	// if(($item_data_legend[0]->d.$x)) {
-					// 	// 	print_r($x);
-					// 	// }
-					// 	if(($item_data_legend[0]->$cell_data)!=""){
-					// 		echo "<th>".$item_data_legend[0]->$cell_data."</th>";
-					// 	}
-					// }
-					// echo "</tr>";
-					// foreach($item_data as $item_data) {
-					// 	echo "<tr>";
-					// 	echo "<td><a href='products/item/?id=".$item_data->item."'>".$item_data->item."</a></td>";
-					// 	for ($y=1; $y<9; $y++) {
-					// 		$cell_data2 = "d".$y;
-					// 		if(($item_data->$cell_data2)!="") {
-					// 			echo "<td>".$item_data->$cell_data2."</td>";
-					// 		}
-					// 	}
-					// 	echo "</tr>";
-					// }
-					// echo "</table>";
-			echo "</div>";
+						// echo "</div>";	// end p2-description-txt.
+						echo "</td>";	// end item-data.
+					echo "</table>";	// end each-item-spec table.
+			echo "</div>";	// end s1-box-background div;
 				// $mPos++;
 			echo "</div>";  //end group-container div;
 			echo "</td>";
