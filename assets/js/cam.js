@@ -3,6 +3,8 @@ jQuery(document).ready(function($) {
   // $('.accordion').click(function(){
   //   console.log('omg u clicked it.');
   // })
+
+// --- THIS IS FOR ACCORDION BUTTON SECTION ---
 var acc = $('.accordion');
 var i;
 
@@ -22,6 +24,7 @@ for (i = 0; i < acc.length; i++) {
 //
 // }
 
+// --- THIS IS FOR PRODUCT MAIN PAGE ---
 var displayExtra = $('.display-extra');
 var i;
 for (i=0; i< displayExtra.length; i++) {
@@ -51,6 +54,21 @@ for (i=0; i< displayExtra.length; i++) {
   //
   // }
 }
+
+// --- THIS IS FOR ITEM PAGE ---
+var imgThumb = $('.single-thumb');
+// console.log($('.main-view-lg'));
+// console.log($('.main-view-lg').length);
+imgThumb.click(function(){
+  // console.log(this.className.split(' ')[1]);
+  var getClickedClass = this.className.split(' ')[1].split('-')[1];
+  console.log(getClickedClass);
+  $('.main-view-lg').each(function(index,object){
+    console.log(index);
+    $(this).css('display','none');
+  })
+  $('.main-view-lg.main-'+getClickedClass).css('display','initial');
+})
 
 })
 
