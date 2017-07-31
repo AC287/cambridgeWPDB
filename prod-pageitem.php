@@ -77,13 +77,15 @@ get_header(); ?>
 				$item_sub2_cat = $get_item_data[0]->s2;
 				if($item_sub2_cat != ""){
 					$get_item_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0='$item_main_cat' AND s1='$item_sub1_cat' AND s2='$item_sub2_cat';");
+					echo "<div class='m-title'><a href='products/'>".$item_main_cat."</a>  >>  <a href='products/ps1/?m0=".$item_main_cat."&s1=".$item_sub1_cat."'>".$item_sub1_cat."</a>  >>  <a href='products/ps2/?m0=".$item_main_cat."&s1=".$item_sub1_cat."&s2=".$item_sub2_cat."'>".$item_sub2_cat."</a>  >>  ".$item_id."</div>";
 					// print_r("sub2 is not empty");
 				} else {
 					$get_item_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0='$item_main_cat' AND s1='$item_sub1_cat';");
+					echo "<div class='m-title'><a href='products/'>".$item_main_cat."</a>  >>  <a href='products/ps2/?m0=".$item_main_cat."&s1=".$item_sub1_cat."'>".$item_sub1_cat."</a>  >>  ".$item_id."</div>";	//Title
 					// print_r("sub2 is empty");
 				}
-				print_r($get_item_data);
-				print_r($get_item_legend);
+				// print_r($get_item_data);
+				// print_r($get_item_legend);
 				// if($p2s2!=""){
 				// 	echo "<div class='m-title'><a href='products/'>".$p2m0."</a>  >>  <a href='products/ps1/?m0=".$p2m0."&s1=".$p2s1."'>".$p2s1."</a>  >>  ".$p2s2."</div>";	//Title
 				// 	$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1' AND s2='$p2s2';");
