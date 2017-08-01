@@ -103,7 +103,7 @@ get_header(); ?>
 					echo "</table>";	// end table.
 					echo "<hr/>";
 					echo "<table class='item-data-sheet'>";
-					echo "<tr>";
+					echo "<tr >";
 					echo "<th>".$item_data_legend[0]->item."</th>";
 					for ($x=1; $x < 9; $x++) {
 						$cell_data = "d".$x;

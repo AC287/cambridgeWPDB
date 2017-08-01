@@ -86,10 +86,12 @@ get_header(); ?>
 				}
 				echo "<div class='s1-box-background'>";
 					echo "<table id='each-item-spec'>";
+						echo "<tr>";
 						echo "<td class='item-image'>";
 							echo "<div class='img-content-box'>";
 								for ($x=0; $x<=4; $x++) {
 									$img = "img".$x;
+									// This will assign default image at main.
 									switch ($x) {
 										case 0:
 										{
@@ -107,22 +109,7 @@ get_header(); ?>
 									// endswitch;
 									}
 								}
-								echo "<br/>";
-								echo "<div class='img-thumbnail-section'>";
-									for ($y=0; $y<=4; $y++) {
-										$img = "img".$y;
-										if(($get_item_data[0]->$img) !=""){
-											echo "<img class='single-thumb thumb-$img' src='".$get_item_data[0]->$img."'>";
-										}
-									}
-								echo "</div>";	// end img-thumbnail-section;
 							echo "</div>";	// end main-view-lg
-						// echo "<p>IMAGE HERE</p>";
-							// if($p2s2!=""){
-							// 	echo "<div class='s2-title'><h2>".$p2s2."</h2></div>";
-							// } else {
-							// 	echo "<div class='s2-title'><h2>".$p2s1."</h2></div>";
-							// }
 						echo "</td>";	// end item-image.
 						echo "<td class='item-data'>";
 						// echo "<p>DATA HERE</p>";
@@ -134,6 +121,7 @@ get_header(); ?>
 									echo "<div class='ip-each-data'>";
 									if ($get_item_data[0]->$d !=""){
 										# Need to revise this here if datatable will be updated.;
+										// if legend has break tag, this will remove and replace it with space.
 										$splitlegend = explode("<br/>",$get_item_legend[0]->$d);
 										$joinlegend = implode(" ",$splitlegend);
 										// print_r($splitlegend);
@@ -146,11 +134,21 @@ get_header(); ?>
 								echo "<a class='spec-sheet' href='".$get_item_data[0]->d9."'>SPEC SHEET</a>";
 
 							echo "</div>";	// end item-spec-container div;
-						// print_r($item_data);
-						// echo "<div class='p2-description-txt'>";
-							// echo "<p>".$item_data[0]->d0."</p>";
-						// echo "</div>";	// end p2-description-txt.
 						echo "</td>";	// end item-data.
+						echo "</tr>";
+						echo "<tr>";
+						// This is thumbnail selection image.
+							echo "<td>";
+							echo "<div class='img-thumbnail-section'>";
+								for ($y=0; $y<=4; $y++) {
+									$img = "img".$y;
+									if(($get_item_data[0]->$img) !=""){
+										echo "<img class='single-thumb thumb-$img' src='".$get_item_data[0]->$img."'>";
+									}
+								}
+							echo "</div>";	// end img-thumbnail-section;
+							echo "</td>";
+						echo "</tr>";
 					echo "</table>";	// end each-item-spec table.
 					echo "<div class='ip-description'>";
 						echo "<h3>PRODUCT DESCRIPTION</h3>";
