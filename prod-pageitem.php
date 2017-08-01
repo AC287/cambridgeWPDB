@@ -152,8 +152,10 @@ get_header(); ?>
 						// echo "</div>";	// end p2-description-txt.
 						echo "</td>";	// end item-data.
 					echo "</table>";	// end each-item-spec table.
-					echo "<h3>PRODUCT DESCRIPTION</h3>";
-					echo "<p>".$get_item_data[0]->d0."</p>";
+					echo "<div class='ip-description'>";
+						echo "<h3>PRODUCT DESCRIPTION</h3>";
+						echo "<p>".$get_item_data[0]->d0."</p>";
+					echo "</div>";	// end ip-description;
 			echo "</div>";	// end s1-box-background div;
 				// $mPos++;
 			echo "</div>";  //end group-container div;
