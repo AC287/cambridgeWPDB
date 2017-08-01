@@ -211,3 +211,6 @@ a.spec-sheet {
   text-decoration: underline;
   cursor: auto;
 }
+.ip-description {
+  padding: 10px;
+}
