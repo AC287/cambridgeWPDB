@@ -132,7 +132,7 @@ td.p2-data {
   padding: 10px;
 }
 
-table.item-data-sheet {
+.item-data-sheet {
   width: 100%;
   font-size: 12px;
   text-align: center;
@@ -160,6 +160,9 @@ table.item-data-sheet {
   margin: 10px;
   background-color: #fff;
   /*vertical-align: top;*/
+}
+#each-item-spec tr {
+  border: none;
 }
 .item-image {
   /*padding: 10px;*/

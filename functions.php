@@ -430,7 +430,7 @@ function twentyseventeen_scripts() {
 	wp_style_add_data( 'twentyseventeen-ie8', 'conditional', 'lt IE 9' );
 
 	// Load custom stylesheet.
-	wp_enqueue_style('twentyseventeen-cam', get_theme_file_uri('/assets/css/cam.css'), array('twentyseventeen-style'), '1.0');
+	wp_enqueue_style('twentyseventeen-cam', get_theme_file_uri('/assets/css/cam.css'), array('twentyseventeen-style'), '1.1');
 
 	// Load the html5 shiv.
 	wp_enqueue_script( 'html5', get_theme_file_uri( '/assets/js/html5.js' ), array(), '3.7.3' );
