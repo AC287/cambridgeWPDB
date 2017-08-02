@@ -72,6 +72,7 @@ get_header(); ?>
 			// $mPos = 0;
 			echo "<div class='group-container'>";
 				$get_item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE item='$item_id';");
+				$get_cert_img = $wpdb->get_results("SELECT * FROM wp_cert;");
 				$item_main_cat = $get_item_data[0]->m0;
 				$item_sub1_cat = $get_item_data[0]->s1;
 				$item_sub2_cat = $get_item_data[0]->s2;
@@ -179,48 +180,57 @@ get_header(); ?>
 					echo "<div class='ip-certification'>";
 						echo "<div class='ip-certitle'>CERTIFIED:</div>";
 						echo "<div >";
+							// print_r(sizeof($get_cert_img));
 							for ($x=0; $x<=9; $x++) {
 								$cert = "cert".$x;
 								$cert_type = $get_item_data[0]->$cert;
-								if ($cert_type != "") {
-									switch ($cert_type) {
-										case ("UL"):
-										{
-											echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ul_01.png'>";
+								// print_r($cert_type);
+								if($cert_type != ""){
+									for ($y=0; $y < sizeof($get_cert_img); $y++) {
+										if ($get_cert_img[$y]->type == $cert_type){
+											echo "<img class='ip-cert-img' src='".$get_cert_img[$y]->link."'>";
 										}
-										break;
-										case ("CLASSIFIED UL"):
-										{
-											echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ulclass.png'>";
-										}
-										break;
-										case ("UR"):
-										{
-											echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ur.png'>";
-										}
-										break;
-										case ("CSA"):
-										{
-											echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/csa.png'>";
-										}
-										break;
-										case ("ABS"):
-										{
-											echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/abs.png'>";
-										}
-										break;
-										case ("NSF"):
-										{
-											echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/nsf.png'>";
-										}
-										break;
-										case ("UPC"):
-										{
-											echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/upc.png'>";
-										}
-										break;
-									}
+									}// end check loop for $get_cert_img;
 								}
+								// if ($cert_type != "") {
+								// 	switch ($cert_type) {
+								// 		case ("UL"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ul_01.png'>";
+								// 		}
+								// 		break;
+								// 		case ("CLASSIFIED UL"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ulclass.png'>";
+								// 		}
+								// 		break;
+								// 		case ("UR"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ur.png'>";
+								// 		}
+								// 		break;
+								// 		case ("CSA"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/csa.png'>";
+								// 		}
+								// 		break;
+								// 		case ("ABS"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/abs.png'>";
+								// 		}
+								// 		break;
+								// 		case ("NSF"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/nsf.png'>";
+								// 		}
+								// 		break;
+								// 		case ("UPC"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/upc.png'>";
+								// 		}
+								// 		break;
+								// 	}
+								// }	// end if
 							}
 						echo "</div>";
 					echo "</div>";	// end ip-certification
