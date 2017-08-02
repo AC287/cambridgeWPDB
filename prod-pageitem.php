@@ -72,6 +72,7 @@ get_header(); ?>
 			// $mPos = 0;
 			echo "<div class='group-container'>";
 				$get_item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE item='$item_id';");
+				$get_cert_img = $wpdb->get_results("SELECT * FROM wp_cert;");
 				$item_main_cat = $get_item_data[0]->m0;
 				$item_sub1_cat = $get_item_data[0]->s1;
 				$item_sub2_cat = $get_item_data[0]->s2;
@@ -89,24 +90,44 @@ get_header(); ?>
 						echo "<tr>";
 						echo "<td class='item-image'>";
 							echo "<div class='img-content-box'>";
-								for ($x=0; $x<=4; $x++) {
+								for ($x=0; $x<=9; $x++) {
 									$img = "img".$x;
 									// This will assign default image at main.
-									switch ($x) {
-										case 0:
-										{
-											if(($get_item_data[0]->$img) !=""){
-												echo "<img class='main-view-lg main-$img' src='".$get_item_data[0]->$img."'>";
+									if(($get_item_data[0]->img2)!=""){
+										switch ($x) {
+											case (2):
+											{
+												if(($get_item_data[0]->$img) !=""){
+													echo "<img class='main-view-lg main-$img' src='".$get_item_data[0]->$img."'>";
+												}
 											}
-										}
-										break;
-										default:
-										{
-											if(($get_item_data[0]->$img) !=""){
-												echo "<img class='main-view-lg main-$img' src='".$get_item_data[0]->$img."' style='display:none'>";
+											break;
+											default:
+											{
+												if(($get_item_data[0]->$img) !=""){
+													echo "<img class='main-view-lg main-$img' src='".$get_item_data[0]->$img."' style='display:none'>";
+												}
 											}
+											// endswitch;
 										}
-									// endswitch;
+									}	// end if there is no img2.
+									else {
+										switch ($x) {
+											case (0):
+											{
+												if(($get_item_data[0]->$img) !=""){
+													echo "<img class='main-view-lg main-$img' src='".$get_item_data[0]->$img."'>";
+												}
+											}
+											break;
+											default:
+											{
+												if(($get_item_data[0]->$img) !=""){
+													echo "<img class='main-view-lg main-$img' src='".$get_item_data[0]->$img."' style='display:none'>";
+												}
+											}
+											// endswitch;
+										}
 									}
 								}
 							echo "</div>";	// end main-view-lg
@@ -138,10 +159,16 @@ get_header(); ?>
 						echo "</tr>";
 						echo "<tr>";
 						// This is thumbnail selection image.
-							echo "<td>";
+							echo "<td colspan='2'>";
 							echo "<div class='img-thumbnail-section'>";
-								for ($y=0; $y<=4; $y++) {
+								for ($y=2; $y<=9; $y++) {
 									$img = "img".$y;
+									if(($get_item_data[0]->$img) !=""){
+										echo "<img class='single-thumb thumb-$img' src='".$get_item_data[0]->$img."'>";
+									}
+								}
+								for ($z=0; $z<2; $z++) {
+									$img = "img".$z;
 									if(($get_item_data[0]->$img) !=""){
 										echo "<img class='single-thumb thumb-$img' src='".$get_item_data[0]->$img."'>";
 									}
@@ -150,8 +177,65 @@ get_header(); ?>
 							echo "</td>";
 						echo "</tr>";
 					echo "</table>";	// end each-item-spec table.
+					echo "<div class='ip-certification'>";
+						echo "<div class='ip-certitle'>CERTIFIED:</div>";
+						echo "<div >";
+							// print_r(sizeof($get_cert_img));
+							for ($x=0; $x<=9; $x++) {
+								$cert = "cert".$x;
+								$cert_type = $get_item_data[0]->$cert;
+								// print_r($cert_type);
+								if($cert_type != ""){
+									for ($y=0; $y < sizeof($get_cert_img); $y++) {
+										if ($get_cert_img[$y]->type == $cert_type){
+											echo "<img class='ip-cert-img' src='".$get_cert_img[$y]->link."'>";
+										}
+									}// end check loop for $get_cert_img;
+								}
+								// if ($cert_type != "") {
+								// 	switch ($cert_type) {
+								// 		case ("UL"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ul_01.png'>";
+								// 		}
+								// 		break;
+								// 		case ("CLASSIFIED UL"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ulclass.png'>";
+								// 		}
+								// 		break;
+								// 		case ("UR"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ur.png'>";
+								// 		}
+								// 		break;
+								// 		case ("CSA"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/csa.png'>";
+								// 		}
+								// 		break;
+								// 		case ("ABS"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/abs.png'>";
+								// 		}
+								// 		break;
+								// 		case ("NSF"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/nsf.png'>";
+								// 		}
+								// 		break;
+								// 		case ("UPC"):
+								// 		{
+								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/upc.png'>";
+								// 		}
+								// 		break;
+								// 	}
+								// }	// end if
+							}
+						echo "</div>";
+					echo "</div>";	// end ip-certification
 					echo "<div class='ip-description'>";
-						echo "<h3>PRODUCT DESCRIPTION</h3>";
+						echo "<div class='ip-desctitle'>PRODUCT DESCRIPTION</div>";
 						echo "<p>".$get_item_data[0]->d0."</p>";
 					echo "</div>";	// end ip-description;
 			echo "</div>";	// end s1-box-background div;

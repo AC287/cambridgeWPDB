@@ -214,6 +214,20 @@ a.spec-sheet {
   text-decoration: underline;
   cursor: auto;
 }
+.ip-certification {
+  padding: 10px;
+}
+.ip-certitle {
+  font-weight: bold;
+}
 .ip-description {
   padding: 10px;
+}
+.ip-desctitle {
+  font-weight: bold;
+}
+.ip-cert-img {
+  max-height: 50px;
+  /*max-width: 50px;*/
+  padding-right: 10px;
 }
