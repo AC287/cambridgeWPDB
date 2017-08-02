@@ -138,7 +138,7 @@ get_header(); ?>
 						echo "</tr>";
 						echo "<tr>";
 						// This is thumbnail selection image.
-							echo "<td>";
+							echo "<td colspan='2'>";
 							echo "<div class='img-thumbnail-section'>";
 								for ($y=0; $y<=4; $y++) {
 									$img = "img".$y;
