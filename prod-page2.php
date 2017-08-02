@@ -101,7 +101,8 @@ get_header(); ?>
 						echo "</div>";	// end p2-description-txt.
 						echo "</td>";	// end p2-description-txt.
 					echo "</table>";	// end table.
-					echo "<hr/>";
+					echo "<img class='s2-imgdivider' src='".$item_data_legend[0]->imgdivider."'>";
+					// echo "<hr/>";	// horizontal line break.
 					echo "<table class='item-data-sheet'>";
 					echo "<tr >";
 					echo "<th>".$item_data_legend[0]->item."</th>";

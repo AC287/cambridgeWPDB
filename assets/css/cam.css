@@ -118,6 +118,9 @@ a.display-extra {
 }*/
 
 /* - - - product cell display - - - */
+.s2-imgdivider {
+  /*max-width: 50px;*/
+}
 .s2-title {
   /*padding-left: 20px;*/
   text-align: center;
