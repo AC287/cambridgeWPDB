@@ -73,13 +73,29 @@ var ipClickedImg = $('.main-view-lg');
 ipClickedImg.click(function(){
   // var getMainClickedClass=this.className.split(' ')[1].split('-')[1];
   var getMainClickedClass='.modal-'+this.className.split(' ')[1].split('-')[1];
-  console.log(getMainClickedClass);
+  // console.log(getMainClickedClass);
   $('.ip-modal').css('display','block');
   $(getMainClickedClass).css('display','block');
 })
 $('.ip-close').click(function(){
   $('.ip-modal').css('display','none');
   $('.ip-slides').css('display','none');
+})
+var clickToNext = $('.ip-slides');
+// console.log(clickToNext.length);
+clickToNext.click(function(){
+  var getClickedIndex = parseInt(this.className.split(' ')[1].split('-')[1].split('img')[1]);
+  console.log(getClickedIndex);
+  var curClass = $('.modal-img'+getClickedIndex);
+  // console.log(curClass);
+  curClass.css('display','none');
+  // console.log(clickToNext.length);
+  if(getClickedIndex == clickToNext.length-1){
+    $('.modal-img0').css('display','block');
+  } else {
+    var curClass = $('.modal-img'+(getClickedIndex + 1));
+    curClass.css('display','block');
+  }
 })
 
 $(document).keydown(function(e){
