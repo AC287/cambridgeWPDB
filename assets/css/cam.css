@@ -221,6 +221,7 @@ img.p2-cert-img {
   width: 300px;
   /*display: none;*/
   border: 1px solid #A7A9AC;
+  cursor: pointer;
 }
 .single-thumb {
   width: 100px;
@@ -266,4 +267,68 @@ a.spec-sheet {
   max-height: 50px;
   /*max-width: 50px;*/
   padding-right: 10px;
+}
+/* modal background */
+.ip-modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0);
+  background-color: rgba(0,0,0,0.9);
+}
+/* modal content(img) */
+.ip-modal-content {
+  margin: auto;
+  /*display: block;*/
+  padding: 0;
+  width: 80%;
+  max-width: 530px;
+}
+.ip-close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+.ip-close:hover, .ip-close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+.ip-slides {
+  /*text-align: center;*/
+  display: none;
+}
+.ip-slides img {
+  /*width: 500px;*/
+}
+.ip-prev, .ip-next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.ip-next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.ip-prev:hover, .ip-next:hover {
+  background-color: rgba(0,0,0,0.8);
 }
