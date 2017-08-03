@@ -305,12 +305,16 @@ a.spec-sheet {
 }
 .ip-slides {
   /*text-align: center;*/
+  cursor: pointer;
   display: none;
+}
+.ip-slides:hover {
+  /*cursor: pointer;*/
 }
 .ip-slides img {
   /*width: 500px;*/
 }
-.ip-prev, .ip-next {
+/*.ip-prev, .ip-next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -331,4 +335,4 @@ a.spec-sheet {
 }
 .ip-prev:hover, .ip-next:hover {
   background-color: rgba(0,0,0,0.8);
-}
+}*/
