@@ -121,13 +121,22 @@ a.display-extra {
 .s2-imgdivider {
   /*max-width: 50px;*/
 }
-.s2-title {
-  /*padding-left: 20px;*/
+/*.s2-title {
+  padding-left: 20px;
   text-align: center;
-}
-td.p2-title {
+}*/
+/*td.p2-title {
   width: 25%;
   vertical-align: top;
+}*/
+.p2-header {
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.p2-title {
+  font-size: 25px;
+  font-weight: bold;
 }
 td.p2-data {
   width: 75%;
@@ -140,7 +149,7 @@ td.p2-data {
   font-size: 12px;
   text-align: center;
   /*padding: 5px;*/
-  margin: auto;
+  /*margin: auto;*/
 }
 .item-data-sheet th {
   /*width: 100%;*/

@@ -86,22 +86,69 @@ get_header(); ?>
 				// print_r($item_data_legend);
 				// print_r(count($item_data_legend[0]));
 				echo "<div class='s1-box-background'>";
-					echo "<table>";
-						echo "<td class='p2-title'>";
-							if($p2s2!=""){
-								echo "<div class='s2-title'><h2>".$p2s2."</h2></div>";
-							} else {
-								echo "<div class='s2-title'><h2>".$p2s1."</h2></div>";
+					echo "<div class='p2-header'>";
+						if($p2s2!=""){
+							echo "<div class='p2-title'>".$p2s2."</div>";
+						} else {
+							echo "<div class='p2-title'>".$p2s1."</div>";
+						}
+						echo "<div class='p2-description-txt'>".$item_data[0]->d0."</div>";
+					echo "</div>";	// end p2-header.
+					echo "<table><tr>";
+						if ($item_data_legend[0]->imgdivider != ""){
+							echo "<td><img src='".$item_data_legend[0]->imgdivider."'></td>";
+						}
+						// echo "<td>".$item_data."</td>";
+					echo "</tr></table>";
+					// print_r($item_data);
+					$certDisplay = $item_data;
+					$certArr=array();
+					// echo count($certDisplay);
+
+					// //--- this part work! ---
+					// for ($i=0; $i<count($item_data); $i++) {
+					// 	for ($j=0; $j<=9; $j++) {
+					// 		$cert = "cert".$j;
+					// 		if($item_data[$i]->$cert!="" && in_array($item_data[$i]->$cert,$certArr)!=TRUE){
+					// 			array_push($certArr, $item_data[$i]->$cert);
+					// 		}
+					// 	}
+					// }
+					// print_r($certArr);
+					// //---this part work! ---
+
+					foreach ($certDisplay as $certDisplay){
+						for($c=0; $c<=9; $c++){	//There are only 0-9 certification slots at database.
+							// echo $c;
+							$cert = "cert".$c;
+							if( $certDisplay->$cert !="" && in_array($certDisplay->$cert, $certArr)!= TRUE){
+								array_push($certArr, $certDisplay->$cert);
 							}
-						echo "</td>";	// end s2-title.
-						echo "<td class='p2-data'>";
-						// print_r($item_data);
-						echo "<div class='p2-description-txt'>";
-							echo "<p>".$item_data[0]->d0."</p>";
-						echo "</div>";	// end p2-description-txt.
-						echo "</td>";	// end p2-description-txt.
-					echo "</table>";	// end table.
-					echo "<img class='s2-imgdivider' src='".$item_data_legend[0]->imgdivider."'>";
+							// print_r($certArr);
+							// print_r($cert);
+							// print_r(in_array($certDisplay->$cert, $certArr));
+							// print_r($certArr);
+						}
+					}
+					print_r(count($certArr));
+
+					// echo "<table>";
+					// 	echo "<td class='p2-title'>";
+					// 		if($p2s2!=""){
+					// 			echo "<div class='s2-title'><h2>".$p2s2."</h2></div>";
+					// 		} else {
+					// 			echo "<div class='s2-title'><h2>".$p2s1."</h2></div>";
+					// 		}
+					// 	echo "</td>";	// end s2-title.
+					// 	echo "<td class='p2-data'>";
+					// 	// print_r($item_data);
+					// 	echo "<div class='p2-description-txt'>";
+					// 		# need to discuss if subcategory description would be the same as individual description.
+					// 		echo "<p>".$item_data[0]->d0."</p>";
+					// 	echo "</div>";	// end p2-description-txt.
+					// 	echo "</td>";	// end p2-description-txt.
+					// echo "</table>";	// end table.
+					// echo "<img class='s2-imgdivider' src='".$item_data_legend[0]->imgdivider."'>";
 					// echo "<hr/>";	// horizontal line break.
 					echo "<table class='item-data-sheet'>";
 					echo "<tr >";
