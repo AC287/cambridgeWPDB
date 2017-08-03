@@ -131,6 +131,7 @@ a.display-extra {
 }*/
 .p2-header {
   padding-left: 20px;
+  padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -143,7 +144,30 @@ td.p2-data {
   vertical-align: top;
   padding: 10px;
 }
-
+.p2-divider {
+  margin-bottom: 0;
+  margin-top: 0;
+  /*margin-left: 20px;*/
+  /*margin-right: 20px;*/
+}
+.p2-divider tr {
+  border: none;
+}
+.p2-divider-img {
+  width: 70%;
+}
+.p2-divider-img img {
+  padding-left: 20px;
+}
+.p2-divider-cert {
+  width: 30%;
+  text-align: center;
+}
+img.p2-cert-img {
+  height: 40px;
+  /*padding-right: 10px;*/
+  /*height: 50px;*/
+}
 .item-data-sheet {
   width: 100%;
   font-size: 12px;

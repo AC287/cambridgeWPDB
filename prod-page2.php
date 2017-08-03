@@ -82,6 +82,7 @@ get_header(); ?>
 					$item_data_legend = $wpdb->get_results("SELECT * FROM wp_prodlegend WHERE m0 = '$p2m0' AND s1='$p2s1';");
 					$item_data = $wpdb->get_results("SELECT * FROM wp_prod0 WHERE m0 = '$p2m0' AND s1='$p2s1';");
 				}
+				$item_certdb = $wpdb->get_results("SELECT * FROM wp_cert;");
 				// $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
 				// print_r($item_data_legend);
 				// print_r(count($item_data_legend[0]));
@@ -94,15 +95,34 @@ get_header(); ?>
 						}
 						echo "<div class='p2-description-txt'>".$item_data[0]->d0."</div>";
 					echo "</div>";	// end p2-header.
-					echo "<table><tr>";
+					echo "<table class='p2-divider'><tr>";
 						if ($item_data_legend[0]->imgdivider != ""){
-							echo "<td><img src='".$item_data_legend[0]->imgdivider."'></td>";
+							echo "<td class='p2-divider-img'><img src='".$item_data_legend[0]->imgdivider."'></td>";
 						}
 						// echo "<td>".$item_data."</td>";
+						$certDisplay = $item_data;
+						$certArr=array();
+						foreach ($certDisplay as $certDisplay){
+							for($c=0; $c<=9; $c++){	//There are only 0-9 certification slots at database.
+								// echo $c;
+								$cert = "cert".$c;
+								if( $certDisplay->$cert !="" && in_array($certDisplay->$cert, $certArr)!= TRUE){
+									array_push($certArr, $certDisplay->$cert);
+								}
+							}
+						}
+						// print_r(count($certArr));
+						echo "<td class='p2-divider-cert'>";
+							for ($iCert=0; $iCert<count($certArr); $iCert++){
+								for($iCertdb = 0; $iCertdb < sizeof($item_certdb); $iCertdb++){
+									if($item_certdb[$iCertdb]->type == $certArr[$iCert]) {
+										echo "<img class='p2-cert-img' src='".$item_certdb[$iCertdb]->link."'>";
+									}
+								}
+							}
+						echo "</td>";
 					echo "</tr></table>";
 					// print_r($item_data);
-					$certDisplay = $item_data;
-					$certArr=array();
 					// echo count($certDisplay);
 
 					// //--- this part work! ---
@@ -117,20 +137,7 @@ get_header(); ?>
 					// print_r($certArr);
 					// //---this part work! ---
 
-					foreach ($certDisplay as $certDisplay){
-						for($c=0; $c<=9; $c++){	//There are only 0-9 certification slots at database.
-							// echo $c;
-							$cert = "cert".$c;
-							if( $certDisplay->$cert !="" && in_array($certDisplay->$cert, $certArr)!= TRUE){
-								array_push($certArr, $certDisplay->$cert);
-							}
-							// print_r($certArr);
-							// print_r($cert);
-							// print_r(in_array($certDisplay->$cert, $certArr));
-							// print_r($certArr);
-						}
-					}
-					print_r(count($certArr));
+
 
 					// echo "<table>";
 					// 	echo "<td class='p2-title'>";

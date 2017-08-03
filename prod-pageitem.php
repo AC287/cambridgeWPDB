@@ -181,10 +181,11 @@ get_header(); ?>
 						echo "<div class='ip-certitle'>CERTIFIED:</div>";
 						echo "<div >";
 							// print_r(sizeof($get_cert_img));
-							for ($x=0; $x<=9; $x++) {
+							for ($x=0; $x<=9; $x++) {	//this get total list of certified from item db.
 								$cert = "cert".$x;
 								$cert_type = $get_item_data[0]->$cert;
 								// print_r($cert_type);
+								// This data check against certification db one by one and if equal, display image.
 								if($cert_type != ""){
 									for ($y=0; $y < sizeof($get_cert_img); $y++) {
 										if ($get_cert_img[$y]->type == $cert_type){
