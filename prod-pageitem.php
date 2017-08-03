@@ -193,45 +193,6 @@ get_header(); ?>
 										}
 									}// end check loop for $get_cert_img;
 								}
-								// if ($cert_type != "") {
-								// 	switch ($cert_type) {
-								// 		case ("UL"):
-								// 		{
-								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ul_01.png'>";
-								// 		}
-								// 		break;
-								// 		case ("CLASSIFIED UL"):
-								// 		{
-								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ulclass.png'>";
-								// 		}
-								// 		break;
-								// 		case ("UR"):
-								// 		{
-								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/ur.png'>";
-								// 		}
-								// 		break;
-								// 		case ("CSA"):
-								// 		{
-								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/csa.png'>";
-								// 		}
-								// 		break;
-								// 		case ("ABS"):
-								// 		{
-								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/abs.png'>";
-								// 		}
-								// 		break;
-								// 		case ("NSF"):
-								// 		{
-								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/nsf.png'>";
-								// 		}
-								// 		break;
-								// 		case ("UPC"):
-								// 		{
-								// 			echo "<img class='ip-cert-img' src='http://files.coda.com.s3.amazonaws.com/imgv2/cert/upc.png'>";
-								// 		}
-								// 		break;
-								// 	}
-								// }	// end if
 							}
 						echo "</div>";
 					echo "</div>";	// end ip-certification
@@ -244,6 +205,23 @@ get_header(); ?>
 			echo "</div>";  //end group-container div;
 			echo "</td>";
 			echo "</table>";
+
+			echo "<div id='itemModal' class='ip-modal'>";
+				echo "<span class='ip-close'>&times;</span>";
+				echo "<div class='ip-modal-content'>";
+					for($m=0; $m<=9; $m++){
+						$imgLg = 'img'.$m;
+						if($get_item_data[0]->$imgLg!=""){
+							// echo $get_item_data[0]->$imgLg;
+							echo "<div class='ip-slides modal-$imgLg'>";
+							echo "<img src='".$get_item_data[0]->$imgLg."' style='width:100%'>";
+							echo "</div>";	// end ip-slides;
+						}
+					}
+					// echo "<a class='ip-prev'>&#10094;</a>";
+					// echo "<a class='ip-next'>&#10095;</a>";
+				echo "</div>";	// end ip-modal-content
+			echo "</div>";	// end #itemModal.
 
 			// while ( have_posts() ) : the_post();
 			//

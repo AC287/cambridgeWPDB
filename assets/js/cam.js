@@ -62,12 +62,32 @@ var imgThumb = $('.single-thumb');
 imgThumb.click(function(){
   // console.log(this.className.split(' ')[1]);
   var getClickedClass = this.className.split(' ')[1].split('-')[1];
-  console.log(getClickedClass);
+  // console.log(getClickedClass);
   $('.main-view-lg').each(function(index,object){
-    console.log(index);
+    // console.log(index);
     $(this).css('display','none');
   })
   $('.main-view-lg.main-'+getClickedClass).css('display','initial');
+})
+var ipClickedImg = $('.main-view-lg');
+ipClickedImg.click(function(){
+  // var getMainClickedClass=this.className.split(' ')[1].split('-')[1];
+  var getMainClickedClass='.modal-'+this.className.split(' ')[1].split('-')[1];
+  console.log(getMainClickedClass);
+  $('.ip-modal').css('display','block');
+  $(getMainClickedClass).css('display','block');
+})
+$('.ip-close').click(function(){
+  $('.ip-modal').css('display','none');
+  $('.ip-slides').css('display','none');
+})
+
+$(document).keydown(function(e){
+  // console.log(e);
+  if(e.keyCode==27){  //this listen for "ESC" key.
+    $('.ip-modal').css('display','none');
+    $('.ip-slides').css('display','none');
+  }
 })
 
 })
