@@ -118,26 +118,62 @@ a.display-extra {
 }*/
 
 /* - - - product cell display - - - */
-.s2-title {
-  /*padding-left: 20px;*/
-  text-align: center;
+.s2-imgdivider {
+  /*max-width: 50px;*/
 }
-td.p2-title {
+/*.s2-title {
+  padding-left: 20px;
+  text-align: center;
+}*/
+/*td.p2-title {
   width: 25%;
   vertical-align: top;
+}*/
+.p2-header {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.p2-title {
+  font-size: 25px;
+  font-weight: bold;
 }
 td.p2-data {
   width: 75%;
   vertical-align: top;
   padding: 10px;
 }
-
+.p2-divider {
+  margin-bottom: 0;
+  margin-top: 0;
+  /*margin-left: 20px;*/
+  /*margin-right: 20px;*/
+}
+.p2-divider tr {
+  border: none;
+}
+.p2-divider-img {
+  width: 70%;
+}
+.p2-divider-img img {
+  padding-left: 20px;
+}
+.p2-divider-cert {
+  width: 30%;
+  text-align: center;
+}
+img.p2-cert-img {
+  height: 40px;
+  /*padding-right: 10px;*/
+  /*height: 50px;*/
+}
 .item-data-sheet {
   width: 100%;
   font-size: 12px;
   text-align: center;
   /*padding: 5px;*/
-  margin: auto;
+  /*margin: auto;*/
 }
 .item-data-sheet th {
   /*width: 100%;*/
