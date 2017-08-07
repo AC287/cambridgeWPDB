@@ -46,26 +46,26 @@ get_header(); ?>
 						// print_r($s1_category[0]->s1);
 						if(!empty($s1_category[0]->s1)){
               // echo "<div>";
-              echo "<div class='accordion' style='cursor:pointer'>".$main_category->m0."</div>";
+              echo "<div class='accordion'><img class='chev' src='http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-right.png'>&nbsp".$main_category->m0."</div>";
               echo "<div class='panel'>";
 							foreach($s1_category as $s1_category) {
 								$s2_category = $wpdb->get_results("SELECT DISTINCT s2 FROM wp_prod0 WHERE s1 = '$s1_category->s1';");
 								if(!empty($s2_category[0]->s2)){
-                  echo "<div class='accordion' style='cursor:pointer'>".$s1_category->s1."</div>";
+                  echo "<div class='accordion'><img class='chev' src='http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-right.png'>&nbsp".$s1_category->s1."</div>";
                   echo "<div class='panel'>";
 									foreach($s2_category as $s2_category) {
-										echo "<div class='accordion' style='cursor:pointer'><a href='products/ps2/?m0=".$main_category->m0."&s1=".$s1_category->s1."&s2=".$s2_category->s2."'>".$s2_category->s2."</a></div>";
+										echo "<div class='accordion no-sub'><a class='no-sub' href='products/ps2/?m0=".$main_category->m0."&s1=".$s1_category->s1."&s2=".$s2_category->s2."'>".$s2_category->s2."</a></div>";
 									}
                   echo "</div>";
 								} else {
-                  echo "<div clas='accordion' style='cursor:pointer'><a href='products/ps2/?m0=".$main_category->m0."&s1=".$s1_category->s1."&s2=".$s2_category->s2."'>".$s1_category->s1."</a></div>";
+                  echo "<div clas='accordion'><a class='no-sub' href='products/ps2/?m0=".$main_category->m0."&s1=".$s1_category->s1."&s2=".$s2_category->s2."'>".$s1_category->s1."</a></div>";
                 }
 							}
               // echo "</div>";
 						}
             else {
               echo "<div>";
-              echo "<div class='accordion' style='cursor:pointer'>".$main_category->m0."</div>";
+              echo "<div class='accordion'>".$main_category->m0."</div>";
             }
 						// echo "<hr/>";
 						echo "</div>";
