@@ -45,25 +45,27 @@ get_header(); ?>
 						// print_r(sizeof($s1_category));
 						// print_r($s1_category[0]->s1);
 						if(!empty($s1_category[0]->s1)){
-              echo "<div>";
-              echo "<button class='accordion'>".$main_category->m0."</button>";
+              // echo "<div>";
+              echo "<div class='accordion' style='cursor:pointer'>".$main_category->m0."</div>";
               echo "<div class='panel'>";
 							foreach($s1_category as $s1_category) {
-								echo "<button class='accordion'>".$s1_category->s1."</button>";
 								$s2_category = $wpdb->get_results("SELECT DISTINCT s2 FROM wp_prod0 WHERE s1 = '$s1_category->s1';");
 								if(!empty($s2_category[0]->s2)){
+                  echo "<div class='accordion' style='cursor:pointer'>".$s1_category->s1."</div>";
                   echo "<div class='panel'>";
 									foreach($s2_category as $s2_category) {
-										echo "<button class='accordion'>".$s2_category->s2."</button>";
+										echo "<div class='accordion' style='cursor:pointer'><a href='products/ps2/?m0=".$main_category->m0."&s1=".$s1_category->s1."&s2=".$s2_category->s2."'>".$s2_category->s2."</a></div>";
 									}
                   echo "</div>";
-								}
+								} else {
+                  echo "<div clas='accordion' style='cursor:pointer'><a href='products/ps2/?m0=".$main_category->m0."&s1=".$s1_category->s1."&s2=".$s2_category->s2."'>".$s1_category->s1."</a></div>";
+                }
 							}
-              echo "</div>";
+              // echo "</div>";
 						}
             else {
               echo "<div>";
-              echo "<button class='accordion'>".$main_category->m0."</button>";
+              echo "<div class='accordion' style='cursor:pointer'>".$main_category->m0."</div>";
             }
 						// echo "<hr/>";
 						echo "</div>";

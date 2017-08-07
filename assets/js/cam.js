@@ -10,6 +10,7 @@ var i;
 
 for (i = 0; i < acc.length; i++) {
   acc[i].onclick = function() {
+    // console.log('clicked');
     this.classList.toggle("active");
     var panel = this.nextElementSibling;
     if (panel.style.maxHeight){
