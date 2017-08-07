@@ -13,16 +13,18 @@ for (i = 0; i < acc.length; i++) {
     // console.log('clicked');
     this.classList.toggle("active");
     // console.log($(this).find('chev-right'));
-    console.log($(this).children());
+    // console.log($(this).children());
     $(this).children('img').attr('src','http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-down.png');
     var panel = this.nextElementSibling;
     if (panel.style.maxHeight){ // this close.
       panel.style.maxHeight = null;
-      console.log('if activated');
+      // console.log('if activated');
       $(this).children('img').attr('src','http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-right.png');
     } else {  //this extend
+      // console.log(panel.scrollHeight);
+      // console.log($('.cat-bar').scrollHeight);
       panel.style.maxHeight = panel.scrollHeight + "px";
-      console.log('else activated');
+      // console.log('else activated');
     }
   }
 }
