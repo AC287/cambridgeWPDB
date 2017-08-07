@@ -90,6 +90,9 @@ clickToNext.click(function(){
   // console.log(curClass);
   curClass.css('display','none');
   // console.log(clickToNext.length);
+  /*
+    # Will need to revise. If there are missing image at specific, it will stuck.
+  */
   if(getClickedIndex == clickToNext.length-1){
     $('.modal-img0').css('display','block');
   } else {
