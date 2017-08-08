@@ -32,12 +32,16 @@ get_header(); ?>
 					// echo "</table>";
 
 					$main_category = $wpdb->get_results("SELECT DISTINCT m0 From wp_prod0;");
+          $distinct_s1 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0;");
+          $distinct_s2 = $wpdb->get_results("SELECT DISTINCT s2 FROM wp_prod0;");
           $main_category2 = $main_category;
-
+          // print_r(sizeof($main_category)+sizeof($distinct_s1)+sizeof($distinct_s2));
           // print_r($main_category);
+          $allHeight = sizeof($main_category)+sizeof($distinct_s1)+sizeof($distinct_s2);
           echo "<table>";
-          echo "<td class='cat-bar'>";
+          echo "<td class='cat-bar totalHeight-".$allHeight."'>";
           echo "<h4>PRODUCT CATEGORIES</h4>";
+          $totalCount = 0;
 					foreach($main_category as $main_category) {
             $s1_category = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category->m0';");
 						// print_r($main_category->m0);
@@ -45,29 +49,36 @@ get_header(); ?>
 						// print_r(sizeof($s1_category));
 						// print_r($s1_category[0]->s1);
 						if(!empty($s1_category[0]->s1)){
-              echo "<div>";
-              echo "<button class='accordion'>".$main_category->m0."</button>";
+              // echo "<div>";
+              echo "<div class='accordion'><img class='chev' src='http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-right.png'>&nbsp".$main_category->m0."</div>";
+              // $totalCount++;
               echo "<div class='panel'>";
 							foreach($s1_category as $s1_category) {
-								echo "<button class='accordion'>".$s1_category->s1."</button>";
 								$s2_category = $wpdb->get_results("SELECT DISTINCT s2 FROM wp_prod0 WHERE s1 = '$s1_category->s1';");
 								if(!empty($s2_category[0]->s2)){
+                  echo "<div class='accordion'><img class='chev' src='http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-right.png'>&nbsp".$s1_category->s1."</div>";
+                  // $totalCount++;
                   echo "<div class='panel'>";
 									foreach($s2_category as $s2_category) {
-										echo "<button class='accordion'>".$s2_category->s2."</button>";
+										echo "<div class='accordion no-sub'><a class='no-sub' href='products/ps2/?m0=".$main_category->m0."&s1=".$s1_category->s1."&s2=".$s2_category->s2."'>".$s2_category->s2."</a></div>";
+                    // $totalCount++;
 									}
-                  echo "</div>";
-								}
+                  echo "</div>";  // end panel
+								} else {
+                  echo "<div class='accordion'><a class='no-sub' href='products/ps2/?m0=".$main_category->m0."&s1=".$s1_category->s1."&s2=".$s2_category->s2."'>".$s1_category->s1."</a></div>";
+                  // $totalCount++;
+                }
 							}
-              echo "</div>";
+              echo "</div>";  // end panel.
 						}
             else {
-              echo "<div>";
-              echo "<button class='accordion'>".$main_category->m0."</button>";
+              echo "<div class='accordion'>".$main_category->m0."</div>";
+              // $totalCount++;
             }
 						// echo "<hr/>";
-						echo "</div>";
+						// echo "</div>";
 					}
+          // echo "<h3>$totalCount</h3>";
           echo "</td>";
           echo "<td class='prod-display'>";
           // echo "<h1> HELLO </h1>";

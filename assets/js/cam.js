@@ -5,20 +5,54 @@ jQuery(document).ready(function($) {
   // })
 
 // --- THIS IS FOR ACCORDION BUTTON SECTION ---
+
+// source: https://codepen.io/brenden/pen/Kwbpyj
+$('.accordion').click(function(e){
+  var $this = $(this);
+  if($this.next().hasClass('show')){
+    $this.next().removeClass('show');
+    $this.children('img').attr('src','http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-right.png');
+    $this.next().slideUp(350);
+  } else {
+    // $this.parent().find('.panel').removeClass('show');
+    // console.log('Else section. Find parent panel and removeClass show');
+    $this.children('img').attr('src','http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-right.png');
+    // $this.parent().find('.panel').slideUp(350);
+    // console.log('Else section. Find parent panel and slideup.');
+    $this.next().toggleClass('show');
+    $this.children('img').attr('src','http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-down.png');
+    $this.next().slideToggle(350);
+  }
+});
+
+/*
 var acc = $('.accordion');
 var i;
-
+// console.log($('.cat-bar').attr('class'));
+var getTotalHeight = parseInt($('.cat-bar').attr('class').split(' ')[1].split('-')[1]);
+console.log(getTotalHeight);
+// console.log($('.accordion').length);
+var getEachCellHeight = $('.accordion').height();
+console.log(getEachCellHeight);
+var catBarHeight = (getTotalHeight * getEachCellHeight) + 'px';
+$('.cat-bar').css('height',catBarHeight);
 for (i = 0; i < acc.length; i++) {
   acc[i].onclick = function() {
+    // console.log('clicked');
     this.classList.toggle("active");
+    $(this).children('img').attr('src','http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-down.png');
     var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
+    if (panel.style.maxHeight){ // this close.
       panel.style.maxHeight = null;
-    } else {
+      // console.log('if activated');
+      $(this).children('img').attr('src','http://files.coda.com.s3.amazonaws.com/imgv2/icons/chev-right.png');
+    } else {  //this extend
       panel.style.maxHeight = panel.scrollHeight + "px";
+      // console.log('else activated');
     }
   }
 }
+*/
 
 // $('.display-extra').onclick = function () {
 //
@@ -90,6 +124,9 @@ clickToNext.click(function(){
   // console.log(curClass);
   curClass.css('display','none');
   // console.log(clickToNext.length);
+  /*
+    # Will need to revise. If there are missing image at specific, it will stuck.
+  */
   if(getClickedIndex == clickToNext.length-1){
     $('.modal-img0').css('display','block');
   } else {
