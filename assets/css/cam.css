@@ -22,9 +22,10 @@ Accordion. Sample taken from https://www.w3schools.com/howto/howto_js_accordion.
   width: 12px;
   height: 12px;
 }
-/*.accordion:hover {
-  cursor: pointer;
-}*/
+.accordion:hover {
+  background-color: #ddd;
+  /*cursor: pointer;*/
+}
 /*.accordion.active{
     background-color: #ddd;
 }*/
@@ -56,6 +57,7 @@ div.panel {
 td.cat-bar {
   width: 27%;
   vertical-align: top;
+  /*max-height: 100%;*/
 }
 td.prod-display {
   width: 73%;
