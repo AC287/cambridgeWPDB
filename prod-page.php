@@ -78,7 +78,7 @@ get_header(); ?>
           $mPos = 0;
           foreach($main_category2 as $main_category2) {
             echo "<div class='group-container'>";
-            echo "<div class='m-title'>".$main_category2->m0."</div>";
+            echo "<div class='m-title'><a href='products/pm0/?m0=".$main_category2->m0."'>".$main_category2->m0."</a></div>";
             $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
             // print_r($s1_category2);
             if(!empty($s1_category2[0]->s1)) {

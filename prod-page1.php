@@ -72,7 +72,7 @@ get_header(); ?>
 			// echo "<h1> HELLO </h1>";
 			// $mPos = 0;
 			echo "<div class='group-container'>";
-			echo "<div class='m-title'><a href='products/'>".$p1m0."</a>  >>  ".$p1s1."</div>";	//Title
+			echo "<div class='m-title'><a href='products/pm0/?m0=".$p1m0."'>".$p1m0."</a>  >>  ".$p1s1."</div>";	//Title
 				// $s1_category2 = $wpdb->get_results("SELECT DISTINCT s1 FROM wp_prod0 WHERE m0 = '$main_category2->m0';");
 				echo "<div class='s1-box-background'>";
 				foreach($sub_category2 as $sub_category2) {
