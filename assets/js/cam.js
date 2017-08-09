@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
-  console.log('JS is fully functional.');
+  // console.log('JS is fully functional.');
+  // console.log(Date());
   // $('.accordion').click(function(){
   //   console.log('omg u clicked it.');
   // })
@@ -119,20 +120,61 @@ var clickToNext = $('.ip-slides');
 // console.log(clickToNext.length);
 clickToNext.click(function(){
   var getClickedIndex = parseInt(this.className.split(' ')[1].split('-')[1].split('img')[1]);
-  console.log(getClickedIndex);
+  var nextIndex = getClickedIndex+1;
+  // console.log(getClickedIndex);
   var curClass = $('.modal-img'+getClickedIndex);
   // console.log(curClass);
   curClass.css('display','none');
+  // console.log($('.modal-img'+(nextIndex+1)));
+  // while ($('.modal-img'+(nextIndex+1))!="") {
+  //   console.log('while is executed');
+  //   // console.log('Image: '+ nextIndex + ' is empty. Adding one.');
+  //   nextIndex++;
+  //   if (nextIndex > 9){
+  //     nextIndex = 0;
+  //   }
+  // }
+  // console.log('aye capt!');
+  // console.log(nextIndex);
+  if($('.modal-img'+nextIndex).length!=0){
+    $('.modal-img'+nextIndex).css('display','block');
+    // console.log('inner if executed.');
+  } else {
+    // console.log('else executed.');
+    for(var i=nextIndex; i < 10; i++){
+      // console.log(i);
+      if(i == 9) {
+        i = 0;
+      }
+      if($('.modal-img'+i).length!=0){
+        console.log(i);
+        $('.modal-img'+i).css('display','block');
+        break;
+      }
+    }
+  }
+
+
   // console.log(clickToNext.length);
   /*
     # Will need to revise. If there are missing image at specific, it will stuck.
   */
-  if(getClickedIndex == clickToNext.length-1){
-    $('.modal-img0').css('display','block');
+  // Image has 9 cells: img0 - img9.
+  /*var nextIndex = getClickedIndex+1;
+  if($('.modal-img'+nextIndex)!=""){
+    $('.modal-img'+nextIndex).css('display','block');
   } else {
-    var curClass = $('.modal-img'+(getClickedIndex + 1));
-    curClass.css('display','block');
-  }
+    for ( var i=getClickedIndex; i <=9; i++){
+    // #Do while loop
+    }
+  }*/
+
+  // if(getClickedIndex == clickToNext.length-1){
+  //   $('.modal-img0').css('display','block');
+  // } else {
+  //   var curClass = $('.modal-img'+(getClickedIndex + 1));
+  //   curClass.css('display','block');
+  // }
 })
 
 $(document).keydown(function(e){
